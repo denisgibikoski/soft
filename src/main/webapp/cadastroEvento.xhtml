@@ -95,18 +95,6 @@
 							<p:ajax event="change" update="frm" process="@this" />
 						</p:inputMask>
 
-						<p:outputLabel value="Assinatura : " />
-						<p:row>
-							<p:signature style="width:400px;height:200px" widgetVar="sig"
-								value="#{cadastroEventoBean.reserva.assinatura}"
-								guideline="true" />
-
-							<div style="margin: 20px 0">
-								<p:commandButton value="Clear" icon="pi pi-times" type="button"
-									style="width: 100px; height:40px; text-align: center"
-									onclick="PF('sig').clear()" />
-							</div>
-						</p:row>
 						<p:outputLabel />
 						<p:row>
 
@@ -117,14 +105,24 @@
 									<p:fileDownload value="#{cadastroEventoBean.termoDeUso()}" />
 								</p:commandLink>
 								e condições:
-								<p:selectBooleanCheckbox id="aceitoTermo"
-									value="#{cadastroEventoBean.termo}">
-									<p:ajax process="@this" update="usuarios-tipos"
-										listener="#{cadastroEventoBean.ativaTermo}" />
-								</p:selectBooleanCheckbox>
 							</p>
 
 						</p:row>
+
+						<p:outputLabel value="Assinatura : " />
+						<p:row>
+							<p:signature style="width:400px;height:200px" widgetVar="sig" valueChangeListener="#{cadastroEventoBean.ativaTermo}"
+								value="#{cadastroEventoBean.reserva.assinatura}"
+								guideline="true" />
+
+							<div style="margin: 20px 0">
+								<p:commandButton value="Clear" icon="pi pi-times" type="button"
+									style="width: 100px; height:40px; text-align: center"
+									onclick="PF('sig').clear()" />
+							</div>
+						</p:row>
+
+
 					</p:panelGrid>
 
 				</div>

@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +42,6 @@ public class CadastroEventoBean implements Serializable {
 
 	private Reserva reserva;
 
-	private boolean termo;
-
 	@PostConstruct
 	public void inicializar() {
 		setHoje(new Date());
@@ -62,7 +61,7 @@ public class CadastroEventoBean implements Serializable {
 
 	public void novoEvento() {
 		try {
-			if (isTermoResposabilidade(isTermo())) {
+			if (isTermoResposabilidade(reserva.getTermoDeUso())) {
 				service.salvar(reserva);
 				emailService.enviar(reserva);
 				emailService.enviarNovoEvento(reserva);
@@ -85,7 +84,7 @@ public class CadastroEventoBean implements Serializable {
 	}
 	
 	public void ativaTermo() {
-		if (termo) {
+		if (!reserva.getAssinatura().isEmpty()) {
 			reserva.setTermoDeUso(true);
 		}	
 	}
@@ -127,14 +126,6 @@ public class CadastroEventoBean implements Serializable {
 
 	public void setHoje(Date hoje) {
 		this.hoje = hoje;
-	}
-
-	public boolean isTermo() {
-		return termo;
-	}
-
-	public void setTermo(boolean termo) {
-		this.termo = termo;
 	}
 
 }
