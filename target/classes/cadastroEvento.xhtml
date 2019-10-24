@@ -84,7 +84,7 @@
 							mask="true" label="Data final"
 							mindate="#{cadastroEventoBean.reserva.dataInicial}"
 							pattern="dd/MM/yyyy HH:mm" locale="pt">
-							<p:ajax event="change" update="frm" process="@this"  />
+							<p:ajax event="dateSelect" update="dataFin" process="@this"  />
 						</p:calendar>
 
 
@@ -92,7 +92,7 @@
 						<p:inputMask mask="99" id="quantPessoas" required="true"
 							requiredMessage="Necessario Informar Quantidade Pessoas"
 							value="#{cadastroEventoBean.reserva.quantidadePessoal}">
-							<p:ajax event="change" update="frm" process="@this" />
+							<p:ajax event="blur" update="frm" process="@this" />
 						</p:inputMask>
 
 						<p:outputLabel />

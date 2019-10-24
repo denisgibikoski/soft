@@ -1,7 +1,5 @@
 package com.example.demo.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +54,7 @@ public class ReservaServiceImpl implements ReservaService {
 		Long iniRESERVA = reserva.getDataInicial().getTime();
 		Long fimRESERVA = reserva.getDataFinal().getTime();
 
-		List<Reserva> reservas = reservaPorDia(reserva.getDataInicial(), reserva.getDataFinal());
-
+		List<Reserva> reservas = reservaRepository.findAll();
 		for (Reserva reserva2 : reservas) {
 
 			Long iniRESERVA2 = reserva2.getDataInicial().getTime();
@@ -71,15 +68,6 @@ public class ReservaServiceImpl implements ReservaService {
 			}
 
 		}
-	}
-
-	private List<Reserva> reservaPorDia(Date dataInicial, Date dataFinal) {
-		List<Reserva> listaDia = new ArrayList<Reserva>();
-
-		listaDia.addAll(reservaRepository.findByDataInicialBetween(dataInicial, dataFinal));
-		listaDia.addAll(reservaRepository.findByDataFinalBetween(dataInicial, dataFinal));
-
-		return listaDia;
 	}
 
 	private void verificaUsuarioAtivo(Usuario usuario) {
