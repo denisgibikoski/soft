@@ -40,7 +40,8 @@ public class EmailServiceImpl implements EmailService {
 
 		String corpo = "Ola " + moradia.getUsuario().getNome() + 
 				"\n Sua Unidade de Moradia : " + moradia.getUnidade() + 
-				"\n O Status :" + moradia.getStatusUnidadeMoradia().getDescricao();
+				"\n O Status :" + moradia.getStatusUnidadeMoradia().getDescricao()+
+				"\n O Sindico tem prazo de 72 horas para validar seu Cadastro, você recebera um e-mail  assim que confirmando. ";
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(moradia.getUsuario().getEmail());
@@ -103,7 +104,8 @@ public class EmailServiceImpl implements EmailService {
 
 		String corpo = "Ola " + reserva.getUsuario().getNome() + 
 				"\n Sua Reserva para seguinte data : " + dataInicial+ " a " + dataFinal + 
-				"\n O Status :" + reserva.getStatusReserva().getDescricao();
+				"\n O Status :" + reserva.getStatusReserva().getDescricao()+ 
+				"\n O Sindico tem prazo de 72 horas para validar sua reserva, você recebera um e-mail  assim que confirmando. ";
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(reserva.getUsuario().getEmail());
