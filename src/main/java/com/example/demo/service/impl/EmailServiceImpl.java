@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -33,6 +34,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	@Async
+	@EventListener
 	public void enviarMoradia(UnidadeMoradia moradia) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
@@ -57,6 +59,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	@Async
+	@EventListener
 	public void enviarNovoEvento(Reserva reserva) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -88,6 +91,7 @@ public class EmailServiceImpl implements EmailService {
 	 *Envia para Usuario
 	 */
 	@Async
+	@EventListener
 	public void enviar(Reserva reserva) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -118,6 +122,7 @@ public class EmailServiceImpl implements EmailService {
 	 */
 	@Override
 	@Async
+	@EventListener
 	public void enviarNovoUsuario(Usuario usuario) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 

@@ -9,12 +9,12 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.example.demo.model.UnidadeMoradia;
 import com.example.demo.model.Usuario;
 import com.example.demo.model.enums.StatusCadastro;
 import com.example.demo.model.enums.TipoUsuario;
-import com.example.demo.service.EmailService;
 import com.example.demo.service.UsuarioService;
 import com.example.demo.util.FacesUtil;
 import com.example.demo.util.NegocioException;
@@ -29,7 +29,7 @@ public class UsuariosBean implements Serializable {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private EmailService emailService;
+	private ApplicationEventPublisher publisher;
 
 	private Usuario usuario;
 
@@ -87,7 +87,7 @@ public class UsuariosBean implements Serializable {
 			}
 			usuario.getMoradia().setUsuario(usuario);
 			usuario = usuarioService.salvar(usuario);
-			emailService.enviarNovoUsuario(usuario);
+			publisher.publishEvent(usuario);
 			FacesUtil.addInfoMessage("Usuario " + usuario.getNome() + "  salvo !!");
 			FacesUtil.addInfoMessage("Unidade N°:  " + usuario.getMoradia().getUnidade() + "  salvo !!");
 		} catch (Exception e) {

@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.example.demo.model.Reserva;
 import com.example.demo.model.enums.TipoEvento;
 import com.example.demo.security.Seguranca;
-import com.example.demo.service.EmailService;
 import com.example.demo.service.ReservaService;
 import com.example.demo.util.FacesUtil;
 import com.example.demo.util.NegocioException;
@@ -30,9 +30,9 @@ public class CadastroEventoBean implements Serializable {
 
 	@Autowired
 	private ReservaService service;
-
+	
 	@Autowired
-	private EmailService emailService;
+	private ApplicationEventPublisher publisher;
 
 	@Autowired
 	private Seguranca seguranca;
@@ -62,8 +62,7 @@ public class CadastroEventoBean implements Serializable {
 		try {
 			if (isTermoResposabilidade(reserva.getTermoDeUso())) {
 				service.salvar(reserva);
-				emailService.enviar(reserva);
-				emailService.enviarNovoEvento(reserva);
+				publisher.publishEvent(reserva);
 				FacesUtil.addInfoMessage("Evento " + reserva.getCodigo() + "  salvo !!");
 				FacesUtil.addInfoMessage(
 						"Unidade N°:  " + reserva.getUsuario().getMoradia().getUnidade() + "  salvo !!");

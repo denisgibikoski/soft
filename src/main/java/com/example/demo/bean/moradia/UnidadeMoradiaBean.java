@@ -9,10 +9,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.example.demo.model.UnidadeMoradia;
 import com.example.demo.model.enums.StatusCadastro;
-import com.example.demo.service.EmailService;
 import com.example.demo.service.UnidadeMoradiaService;
 import com.example.demo.util.FacesUtil;
 
@@ -24,31 +24,31 @@ public class UnidadeMoradiaBean implements Serializable {
 
 	@Autowired
 	private UnidadeMoradiaService service;
-	
+
 	@Autowired
-	private EmailService emailService;
+	private ApplicationEventPublisher publisher;
 
 	private UnidadeMoradia moradia;
-	
+
 	private List<UnidadeMoradia> listUnidadeMoradia = new ArrayList<UnidadeMoradia>();
 	private boolean ativarUnidade = false;
-		
+
 	@PostConstruct
 	public void inicializar() {
-		
+
 	}
-		
+
 	public void salvarMoradia(UnidadeMoradia moradia) {
-		try {	
+		try {
 			moradia.getUsuario().setStatusUsuario(StatusCadastro.ATIVO);
 			moradia = service.salvar(moradia);
-			emailService.enviarMoradia(moradia);
+			publisher.publishEvent(moradia);
 			FacesUtil.addInfoMessage("Unidade de Moradisa Atualizada com sucesso!!!");
 		} catch (Exception e) {
 			FacesUtil.addFatalMessage(e.getMessage());
 		}
 	}
-	
+
 	public StatusCadastro[] getStatusCadastros() {
 		return StatusCadastro.values();
 	}

@@ -16,11 +16,11 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.example.demo.model.Reserva;
 import com.example.demo.model.enums.StatusReserva;
 import com.example.demo.security.Seguranca;
-import com.example.demo.service.EmailService;
 import com.example.demo.service.ReservaService;
 import com.example.demo.util.FacesUtil;
 import com.example.demo.util.ScheduleUtil;
@@ -35,8 +35,8 @@ public class HomeBean implements Serializable {
 	private Seguranca seguranca;
 	
 	@Autowired
-	private EmailService emailService;
-
+	private ApplicationEventPublisher publisher;
+	
 	@Autowired
 	private ReservaService service;
 	private Reserva reserva;
@@ -93,8 +93,7 @@ public class HomeBean implements Serializable {
 	public void salvarEvento(ActionEvent actionEvent) {
 		try {
 			service.salvar(reserva);
-			emailService.enviar(reserva);
-			emailService.enviarNovoEvento(reserva);
+			publisher.publishEvent(reserva);
 			FacesUtil.addInfoMessage("Reserva Atualizada com sucesso!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
