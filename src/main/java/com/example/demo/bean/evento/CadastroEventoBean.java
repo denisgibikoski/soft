@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -74,7 +73,7 @@ public class CadastroEventoBean implements Serializable {
 			FacesUtil.addErrorMessage("ERRO :" + e.getMessage());
 		}
 	}
-	
+
 	private boolean isTermoResposabilidade(Boolean termoDeUso) {
 		if (termoDeUso.booleanValue()) {
 			return true;
@@ -83,10 +82,18 @@ public class CadastroEventoBean implements Serializable {
 		}
 	}
 	
+	
 	public void ativaTermo() {
-		if (!reserva.getAssinatura().isEmpty()) {
-			reserva.setTermoDeUso(true);
-		}	
+		try {
+			if (!reserva.getAssinatura().isEmpty()) {
+				reserva.setTermoDeUso(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			new NegocioException("Sem Assinatura");
+		}
+		
+		
 	}
 
 	public StreamedContent termoDeUso() {
@@ -97,7 +104,7 @@ public class CadastroEventoBean implements Serializable {
 		return file;
 	}
 
-	private void limpar() {
+	private void limpar() {		
 		reserva = new Reserva();
 		if (FacesContext.getCurrentInstance() != null) {
 			reserva.setUsuario(seguranca.getUsuarioLogado().getUsuario());
