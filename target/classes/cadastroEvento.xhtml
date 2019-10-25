@@ -58,11 +58,11 @@
 						</p:selectOneMenu>
 
 						<p:row id="descricaoOutro"
-							rendered="#{cadastroEventoBean.reserva.tipoevento == 'OUTRO'}">
+							rendered="#{cadastroEventoBean.reserva.tipoevento == 'OUTROS'}">
 							<p:outputLabel value="Descrição do Evento :" />
 						</p:row>
 						<p:row id="descricaoEvento"
-							rendered="#{cadastroEventoBean.reserva.tipoevento == 'OUTRO'}">
+							rendered="#{cadastroEventoBean.reserva.tipoevento == 'OUTROS'}">
 							<p:inputTextarea rows="6" cols="40"
 								value="#{cadastroEventoBean.reserva.descricao}" />
 						</p:row>

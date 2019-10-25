@@ -31,7 +31,7 @@
 			rightHeaderTemplate="" style="margin-top:15px" draggable="false"
 			widgetVar="myschedule" initialDate="#{homeBean.hoje}">
 
-<!-- 			<p:ajax event="dateSelect" listener="#{homeBean.onDateSelect}"
+			<!-- 			<p:ajax event="dateSelect" listener="#{homeBean.onDateSelect}"
 				update="eventDetails" oncomplete="PF('eventDialog').show();" /> -->
 			<p:ajax event="eventSelect" listener="#{homeBean.onEventSelect}"
 				update="eventDetails" oncomplete="PF('eventDialog').show();" />
@@ -68,12 +68,18 @@
 					mask="true" label="Data final"
 					mindate="#{homeBean.reserva.dataInicial}"
 					pattern="dd/MM/yyyy HH:mm" locale="pt" />
+					
 
-				<p:outputLabel value="Descrição do Evento :" />
-				<p:inputTextarea rows="6" cols="40"
-					readonly="#{homeBean.reserva.codigo != null}"
+				<p:outputLabel value="Tipo de Evento :" />
+				<p:inputText value="#{homeBean.reserva.tipoevento}"
+					rendered="#{homeBean.reserva.codigo != null}" readonly="true" />
+
+				<p:outputLabel value="Descrição do Evento :"  
+					rendered="#{homeBean.habilitarDescricao()}" />
+				<p:inputTextarea rows="6" cols="40" 
+					rendered="#{homeBean.habilitarDescricao()}"
 					value="#{homeBean.reserva.descricao}" />
-
+					
 				<p:outputLabel value="Status :" />
 				<p:inputText value="#{homeBean.reserva.statusReserva}"
 					rendered="#{homeBean.reserva.codigo != null}" readonly="true" />
@@ -88,10 +94,15 @@
 					readonly="#{homeBean.reserva.codigo != null}"
 					value="#{homeBean.reserva.assinatura}" guideline="true" />
 
-				<p:commandButton id="addButton" value="Save"
+				<p:commandButton id="addButton" value="Salvar"
 					actionListener="#{homeBean.salvarEvento}"
 					rendered="#{homeBean.reserva.codigo == null}"
 					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+				
+				<p:commandButton id="cancelarButton" value="Cancelar"
+					actionListener="#{homeBean.cancelarEvento}"
+					rendered="#{homeBean.reserva.codigo != null}"
+					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />	
 
 			</h:panelGrid>
 		</p:dialog>

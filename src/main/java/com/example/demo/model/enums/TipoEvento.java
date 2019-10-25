@@ -8,7 +8,7 @@ public enum TipoEvento {
 	CAFEDAMANHA("café da manhã"),
 	ANIVERSARIO("festa de aniversário"),
 	REUNIAO("Reunião de Condominio"),
-	OUTRO("outro");
+	OUTROS("outros");
 	
 	private String descricao;
 	

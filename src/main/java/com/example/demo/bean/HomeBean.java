@@ -83,7 +83,7 @@ public class HomeBean implements Serializable {
 	public void onEventSelect(SelectEvent selectEvent) {
 		event = (DefaultScheduleEvent) selectEvent.getObject();
 		listaReservas.forEach(e -> {
-			if (event.getDescription().equals(e.getDescricao()) && event.getTitle().equals(e.getUsuario().getNome())
+			if (event.getDescription() == e.getDescricao() && event.getTitle().equals(e.getUsuario().getNome())
 					&& event.getStartDate().equals(e.getDataInicial()) && event.getEndDate().equals(e.getDataFinal())) {
 				reserva = e;
 			}
@@ -98,6 +98,28 @@ public class HomeBean implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.addFatalMessage(e.getMessage());
+		}
+	}
+	
+	public void cancelarEvento(ActionEvent actionEvent) {
+		try {
+			
+			
+			publisher.publishEvent(reserva);
+			FacesUtil.addInfoMessage("Reserva Atualizada com sucesso!!!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.addFatalMessage(e.getMessage());
+		}
+	}
+	
+	
+	
+	public boolean habilitarDescricao() {
+		if (reserva.getDescricao() == null) {
+			return false;
+		}else {
+			return true;
 		}
 	}
 	

@@ -83,7 +83,6 @@ public class CadastroEventoBean implements Serializable {
 		}
 	}
 	
-	
 	public void ativaTermo() {
 		try {
 			if (!reserva.getAssinatura().isEmpty()) {
@@ -92,9 +91,7 @@ public class CadastroEventoBean implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 			new NegocioException("Sem Assinatura");
-		}
-		
-		
+		}		
 	}
 
 	public StreamedContent termoDeUso() {
