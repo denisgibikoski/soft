@@ -23,6 +23,7 @@ import com.example.demo.model.enums.StatusReserva;
 import com.example.demo.security.Seguranca;
 import com.example.demo.service.ReservaService;
 import com.example.demo.util.FacesUtil;
+import com.example.demo.util.RestricaoHorario;
 import com.example.demo.util.ScheduleUtil;
 
 @Named
@@ -33,10 +34,10 @@ public class HomeBean implements Serializable {
 
 	@Autowired(required = false)
 	private Seguranca seguranca;
-	
+
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
+
 	@Autowired
 	private ReservaService service;
 	private Reserva reserva;
@@ -100,7 +101,7 @@ public class HomeBean implements Serializable {
 			FacesUtil.addFatalMessage(e.getMessage());
 		}
 	}
-	
+
 	public void removerEvento(ActionEvent actionEvent) {
 		try {
 			service.remover(reserva);
@@ -111,28 +112,29 @@ public class HomeBean implements Serializable {
 			FacesUtil.addFatalMessage(e.getMessage());
 		}
 	}
-	
+
 	public boolean podeRemoverEvento() {
 		if (reserva.getCodigo() != null) {
 			if (reserva.getStatusReserva() != StatusReserva.CONCLUIDO) {
-				
+				if (RestricaoHorario.permite(reserva.getDataInicial())) {
+					return true;
+				}
 			}
-			return true;
-		}else {
-			return false;
 		}
+		return false;
 	}
-	
+
 	public boolean habilitarDescricao() {
 		if (reserva.getDescricao() == null) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
+
 	public void redicionaCadastroUsuario() {
-		FacesUtil.redirecionarPagina("cadastroUsuario.xhtml?usuario="+seguranca.getUsuarioLogado().getUsuario().getCodigo());
+		FacesUtil.redirecionarPagina(
+				"cadastroUsuario.xhtml?usuario=" + seguranca.getUsuarioLogado().getUsuario().getCodigo());
 	}
 
 	public StatusReserva[] getstatusReservas() {
