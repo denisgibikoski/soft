@@ -16,7 +16,5 @@ public interface ReservaService {
 	void salvar(Reserva reserva);
 
 	Reserva porId(Long id);
-
-	
-	
+		
 }

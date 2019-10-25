@@ -142,7 +142,6 @@ public class EmailServiceImpl implements EmailService {
 		simpleMailMessage.setText(mensagem.getCorpo());
 
 		emailSender.send(simpleMailMessage);
-
 	}
 
 	/**
@@ -166,8 +165,7 @@ public class EmailServiceImpl implements EmailService {
 		simpleMailMessage.setSubject(mensagem.getAssunto());
 		simpleMailMessage.setText(mensagem.getCorpo());
 
-		emailSender.send(simpleMailMessage);
-		
+		emailSender.send(simpleMailMessage);	
 	}
 
 }

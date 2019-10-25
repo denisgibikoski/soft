@@ -43,7 +43,10 @@ public class CadastroEventoBean implements Serializable {
 
 	@PostConstruct
 	public void inicializar() {
-		setHoje(new Date());
+		long aux = new Date().getTime() + 259200000;
+		Date tesDate = new Date();
+		tesDate.setTime(aux);
+		setHoje(tesDate);
 
 		limpar();
 		FacesContext fContext = FacesContext.getCurrentInstance();
@@ -64,8 +67,7 @@ public class CadastroEventoBean implements Serializable {
 				service.salvar(reserva);
 				publisher.publishEvent(reserva);
 				FacesUtil.addInfoMessage("Evento " + reserva.getCodigo() + "  salvo !!");
-				FacesUtil.addInfoMessage(
-						"Unidade N°:  " + reserva.getUsuario().getMoradia().getUnidade() + "  salvo !!");
+				FacesUtil.addInfoMessage("Unidade N°:  " + reserva.getUsuario().getMoradia().getUnidade() + "  salvo !!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +79,7 @@ public class CadastroEventoBean implements Serializable {
 		if (termoDeUso.booleanValue()) {
 			return true;
 		} else {
-			throw new NegocioException("O Termo de Uso não foi Aceito");
+			throw new NegocioException("O Termo de Uso não foi Assinado");
 		}
 	}
 	

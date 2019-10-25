@@ -60,7 +60,7 @@ public class ListaEventosBean implements Serializable {
 	}
 
 	public void consultar() {
-		setTodosEventos(service.todos());
+		setTodosEventos(service.todos());		
 	}
 
 	public List<Reserva> getTodosEventos() {
