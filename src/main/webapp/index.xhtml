@@ -99,10 +99,14 @@
 					rendered="#{homeBean.reserva.codigo == null}"
 					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
 				
-				<p:commandButton id="cancelarButton" value="Cancelar"
-					actionListener="#{homeBean.cancelarEvento}"
-					rendered="#{homeBean.reserva.codigo != null}"
-					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />	
+				<p:commandButton id="cancelarButton" value="Excluir"
+					actionListener="#{homeBean.removerEvento}"
+					rendered="#{homeBean.podeRemoverEvento()}"
+					oncomplete="PF('myschedule').update();PF('eventDialog').hide();" >
+				<p:confirm icon="ui-icon-alert" header="Confirmação de exclusao de Reserva"
+									message="Tem certeza que deseja excluir a Reserva?
+									 Cera verificado se esta dentro da carencia de 72horas." />
+				</p:commandButton>	
 
 			</h:panelGrid>
 		</p:dialog>

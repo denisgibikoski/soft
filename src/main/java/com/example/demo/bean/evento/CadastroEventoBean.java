@@ -21,6 +21,7 @@ import com.example.demo.security.Seguranca;
 import com.example.demo.service.ReservaService;
 import com.example.demo.util.FacesUtil;
 import com.example.demo.util.NegocioException;
+import com.example.demo.util.RestricaoHorario;
 
 @Named
 @ViewScoped
@@ -43,7 +44,7 @@ public class CadastroEventoBean implements Serializable {
 
 	@PostConstruct
 	public void inicializar() {
-		long aux = new Date().getTime() + 259200000;
+		long aux = new Date().getTime() + RestricaoHorario.getRESTRICAO();
 		Date tesDate = new Date();
 		tesDate.setTime(aux);
 		setHoje(tesDate);

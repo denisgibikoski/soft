@@ -101,10 +101,9 @@ public class HomeBean implements Serializable {
 		}
 	}
 	
-	public void cancelarEvento(ActionEvent actionEvent) {
+	public void removerEvento(ActionEvent actionEvent) {
 		try {
-			
-			
+			service.remover(reserva);
 			publisher.publishEvent(reserva);
 			FacesUtil.addInfoMessage("Reserva Atualizada com sucesso!!!");
 		} catch (Exception e) {
@@ -113,7 +112,13 @@ public class HomeBean implements Serializable {
 		}
 	}
 	
-	
+	public boolean podeRemoverEvento() {
+		if (res) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	public boolean habilitarDescricao() {
 		if (reserva.getDescricao() == null) {
