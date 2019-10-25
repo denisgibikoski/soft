@@ -42,8 +42,6 @@ public class ReservaServiceImpl implements ReservaService {
 		if (reserva.getCodigo() == null) {
 			verificaHorarioReserva(reserva);
 		}
-		
-		
 		reserva.setUsuario(usuario);
 		reservaRepository.saveAndFlush(reserva);
 

@@ -113,7 +113,10 @@ public class HomeBean implements Serializable {
 	}
 	
 	public boolean podeRemoverEvento() {
-		if (true) {
+		if (reserva.getCodigo() != null) {
+			if (reserva.getStatusReserva() != StatusReserva.CONCLUIDO) {
+				
+			}
 			return true;
 		}else {
 			return false;
