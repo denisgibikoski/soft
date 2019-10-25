@@ -113,7 +113,7 @@ public class HomeBean implements Serializable {
 	}
 	
 	public boolean podeRemoverEvento() {
-		if (res) {
+		if (true) {
 			return true;
 		}else {
 			return false;
