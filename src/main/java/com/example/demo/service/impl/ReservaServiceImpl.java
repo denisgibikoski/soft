@@ -27,7 +27,7 @@ public class ReservaServiceImpl implements ReservaService {
 	public List<Reserva> todos() {
 		return reservaRepository.findAll();
 	}
-	
+
 	@Override
 	public void remover(Reserva reserva) {
 		reservaRepository.delete(reserva);
@@ -64,7 +64,6 @@ public class ReservaServiceImpl implements ReservaService {
 			if (fimRESERVA >= iniRESERVA2 && fimRESERVA <= fimRESERVA2) {
 				throw new NegocioException("Ja Existe Reserva neste peiodo");
 			}
-
 		}
 	}
 

@@ -13,7 +13,7 @@ public interface EmailService {
 
 	void enviarNovoUsuario(Usuario usuario);
 
-	void enviarNovoEvento(Reserva reserva);
+	void enviarSindico(Reserva reserva);
 
 	void enviarMoradia(UnidadeMoradia moradia);
 

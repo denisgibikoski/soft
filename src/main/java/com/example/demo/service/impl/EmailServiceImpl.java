@@ -7,8 +7,6 @@ import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +17,16 @@ import com.example.demo.model.Usuario;
 import com.example.demo.model.enums.StatusReserva;
 import com.example.demo.service.EmailService;
 import com.example.demo.service.UsuarioService;
+import com.example.demo.util.Email;
 
 @Component
 public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private UsuarioService usuarioService;
-
+	
 	@Autowired
-	public JavaMailSender emailSender;
+	private Email email;
 
 	/**
 	 * envia Moradia
@@ -36,7 +35,6 @@ public class EmailServiceImpl implements EmailService {
 	@Async
 	@EventListener
 	public void enviarMoradia(UnidadeMoradia moradia) {
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
 		String corpo = "Ola " + moradia.getUsuario().getNome() + "\n Sua Unidade de Moradia : " + moradia.getUnidade()
 				+ "\n O Status :" + moradia.getStatusUnidadeMoradia().getDescricao()
@@ -45,23 +43,16 @@ public class EmailServiceImpl implements EmailService {
 		List<String> emails = new ArrayList<String>();
 		emails.add(moradia.getUsuario().getEmail());
 		Mensagem mensagem = new Mensagem(emails, "Status do Cadastro da Moradia", corpo);
-		simpleMailMessage.setFrom(mensagem.getRemetente());
-		simpleMailMessage.setTo(mensagem.getDestinatarios().toArray(new String[mensagem.getDestinatarios().size()]));
-		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
-
-		emailSender.send(simpleMailMessage);
-
+		email.envia(mensagem);	
 	}
 
 	/**
 	 * Envia para o Sindico
 	 */
-	@Override
 	@Async
 	@EventListener
-	public void enviarNovoEvento(Reserva reserva) {
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+	public void enviarSindico(Reserva reserva) {
+
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		dt.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 
@@ -84,13 +75,8 @@ public class EmailServiceImpl implements EmailService {
 		Usuario sindico = usuarioService.getSindico();
 		List<String> emails = new ArrayList<String>();
 		emails.add(sindico.getEmail());
-		Mensagem mensagem = new Mensagem(emails, "Cadastro de Nova Reserva : " + reserva.getUsuario().getNome(), corpo);
-		simpleMailMessage.setFrom(mensagem.getRemetente());
-		simpleMailMessage.setTo(mensagem.getDestinatarios().toArray(new String[mensagem.getDestinatarios().size()]));
-		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
-
-		emailSender.send(simpleMailMessage);
+		Mensagem mensagem = new Mensagem(emails, reserva.getStatusReserva()+" Status da Reserva : " + reserva.getUsuario().getNome(), corpo);
+		email.envia(mensagem);	
 	}
 
 	/**
@@ -99,7 +85,6 @@ public class EmailServiceImpl implements EmailService {
 	@Async
 	@EventListener
 	public void enviar(Reserva reserva) {
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		dt.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 
@@ -123,12 +108,7 @@ public class EmailServiceImpl implements EmailService {
 		List<String> emails = new ArrayList<String>();
 		emails.add(reserva.getUsuario().getEmail());
 		Mensagem mensagem = new Mensagem(emails, "Status de sua reserva", corpo);
-		simpleMailMessage.setFrom(mensagem.getRemetente());
-		simpleMailMessage.setTo(mensagem.getDestinatarios().toArray(new String[mensagem.getDestinatarios().size()]));
-		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
-
-		emailSender.send(simpleMailMessage);
+		email.envia(mensagem);	
 	}
 
 	/**
@@ -138,7 +118,6 @@ public class EmailServiceImpl implements EmailService {
 	@Async
 	@EventListener
 	public void enviarNovoUsuario(Usuario usuario) {
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
 		String corpo = "Existe usuario pendente de : " + usuario.getNome() + 
 				"\n Favor Ativar usuario o quanto antes"+ 
@@ -149,12 +128,7 @@ public class EmailServiceImpl implements EmailService {
 		List<String> emails = new ArrayList<String>();
 		emails.add(sindico.getEmail());
 		Mensagem mensagem = new Mensagem(emails, "Cadastro de Usuario Novo: " + usuario.getNome(), corpo);
-		simpleMailMessage.setFrom(mensagem.getRemetente());
-		simpleMailMessage.setTo(mensagem.getDestinatarios().toArray(new String[mensagem.getDestinatarios().size()]));
-		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
-
-		emailSender.send(simpleMailMessage);
+		email.envia(mensagem);		
 	}
 
 	/**
@@ -163,8 +137,7 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	@Async
 	public void enviarSenhaNova(Usuario usuario, String senha) {
-		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-
+		
 		String corpo = "Caro usuario : " + usuario.getNome() + 
 				"\n Usar a seguinte senha : " + senha+ 
 				"\n Favor usuario troque sua senha o quanto antes." + 
@@ -172,13 +145,8 @@ public class EmailServiceImpl implements EmailService {
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(usuario.getEmail());
-		Mensagem mensagem = new Mensagem(emails, "Redefinição de Senmha de Usuario : " + usuario.getNome(), corpo);
-		simpleMailMessage.setFrom(mensagem.getRemetente());
-		simpleMailMessage.setTo(mensagem.getDestinatarios().toArray(new String[mensagem.getDestinatarios().size()]));
-		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
-
-		emailSender.send(simpleMailMessage);
+		Mensagem mensagem = new Mensagem(emails, "Redefinição de Senmha de Usuario : " + usuario.getNome(), corpo);	
+		email.envia(mensagem);		
 	}
 
 }
