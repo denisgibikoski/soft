@@ -28,31 +28,35 @@
 		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
 	</f:metadata>
 
-	<div id="login" class="container-fluid border border-0"  >
-		<h:form id="frm" prependId="false"  class="text-center">
+	<div id="login" class="container-fluid card  "
+		style="background-image: url('img/background.jpg'); height: 100%;">
 
-			<p:fieldset >
-				<p:messages id="messages" autoUpdate="true" closable="true" />
-				<p>
-					<h:graphicImage value="/resources/img/logo.png" height="70"
-						width="300" />
-				</p>
-				<p>
-					<p:inputText size="30" id="username" value="#{loginBean.email}"
-						placeholder="E-mail" />
-				</p>
-				<p>
-					<p:password size="30" id="password" placeholder="Senha" />
-				<p>
-					<p:link outcome="/redefinirSenha" value="Redefinir Senha" class="btn btn-link" />
-				</p>
+		<h:form id="frm" class="md-form text-center " style="color: #757575;">
 
-				</p>
-				<p>
-					<h:commandButton value="Login" action="#{loginBean.login}" ajax="false" class="btn btn-primary" />
-				</p>
-				<p:link outcome="/cadastroUsuario" value="Cadastrar Novo Usuario" class="btn btn-link" />
-			</p:fieldset>
+
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<p>
+				<h:graphicImage value="/resources/img/logo.png" height="70"
+					width="300" />
+			</p>
+			<p>
+				<p:inputText size="30" id="username" value="#{loginBean.email}"
+					placeholder="E-mail" />
+			</p>
+			<p>
+				<p:password size="30" id="password" placeholder="Senha" />
+			<p>
+				<p:link outcome="/redefinirSenha" value="Redefinir Senha"
+					class="btn btn-link" />
+			</p>
+
+			</p>
+			<p>
+				<h:commandButton value="Login" action="#{loginBean.login}"
+					ajax="false" class="btn btn-info btn-block" />
+			</p>
+			<p:link outcome="/cadastroUsuario" value="Cadastrar Novo Usuario"
+				class="btn btn-link" />
 
 		</h:form>
 	</div>
