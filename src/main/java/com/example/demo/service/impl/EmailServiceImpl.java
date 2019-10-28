@@ -16,9 +16,9 @@ import com.example.demo.model.Mensagem;
 import com.example.demo.model.Reserva;
 import com.example.demo.model.UnidadeMoradia;
 import com.example.demo.model.Usuario;
+import com.example.demo.model.enums.StatusReserva;
 import com.example.demo.service.EmailService;
 import com.example.demo.service.UsuarioService;
-
 
 @Component
 public class EmailServiceImpl implements EmailService {
@@ -28,9 +28,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	public JavaMailSender emailSender;
-	
+
 	/**
-	 *envia Moradia
+	 * envia Moradia
 	 */
 	@Override
 	@Async
@@ -38,10 +38,9 @@ public class EmailServiceImpl implements EmailService {
 	public void enviarMoradia(UnidadeMoradia moradia) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-		String corpo = "Ola " + moradia.getUsuario().getNome() + 
-				"\n Sua Unidade de Moradia : " + moradia.getUnidade() + 
-				"\n O Status :" + moradia.getStatusUnidadeMoradia().getDescricao()+
-				"\n O Sindico tem prazo de 72 horas para validar seu Cadastro, você recebera um e-mail  assim que confirmando. ";
+		String corpo = "Ola " + moradia.getUsuario().getNome() + "\n Sua Unidade de Moradia : " + moradia.getUnidade()
+				+ "\n O Status :" + moradia.getStatusUnidadeMoradia().getDescricao()
+				+ "\n O Sindico tem prazo de 72 horas para validar seu Cadastro, você recebera um e-mail  assim que confirmando. ";
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(moradia.getUsuario().getEmail());
@@ -52,11 +51,11 @@ public class EmailServiceImpl implements EmailService {
 		simpleMailMessage.setText(mensagem.getCorpo());
 
 		emailSender.send(simpleMailMessage);
-		
+
 	}
 
 	/**
-	 *Envia para o Sindico
+	 * Envia para o Sindico
 	 */
 	@Override
 	@Async
@@ -69,14 +68,20 @@ public class EmailServiceImpl implements EmailService {
 		String dataInicial = dt.format(reserva.getDataInicial());
 
 		String dataFinal = dt.format(reserva.getDataFinal());
-
-		String corpo = "Usuario : " + reserva.getUsuario().getNome() +" , fez uma nova reserva."+
-				"\n Reserva para seguinte data : " + dataInicial+ " a " + dataFinal +
-				"\n O Status :" + reserva.getStatusReserva().getDescricao()+
-				"\n Consulte o Sistema por o quanto antes.";
+		
+		String corpo;
+		if (reserva.getStatusReserva().equals(StatusReserva.EXCUIDO)) {
+			corpo = "Usuario : " + reserva.getUsuario().getNome() + 
+					"\n A Reserva para seguinte data : " + dataInicial+ " a " + dataFinal + 
+					"\n Com Status :" + reserva.getStatusReserva().getDescricao();
+		}else {
+			 corpo = "Usuario : " + reserva.getUsuario().getNome() + " , fez uma nova reserva."+ 
+					"\n Reserva para seguinte data : " + dataInicial + " a " + dataFinal + 
+					"\n O Status :"	+ reserva.getStatusReserva().getDescricao() + 
+					"\n Consulte o Sistema por o quanto antes.";
+		}
 
 		Usuario sindico = usuarioService.getSindico();
-
 		List<String> emails = new ArrayList<String>();
 		emails.add(sindico.getEmail());
 		Mensagem mensagem = new Mensagem(emails, "Cadastro de Nova Reserva : " + reserva.getUsuario().getNome(), corpo);
@@ -89,7 +94,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 *Envia para Usuario
+	 * Envia para Usuario
 	 */
 	@Async
 	@EventListener
@@ -98,14 +103,22 @@ public class EmailServiceImpl implements EmailService {
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		dt.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 
+		String corpo;
+
 		String dataInicial = dt.format(reserva.getDataInicial());
 
 		String dataFinal = dt.format(reserva.getDataFinal());
 
-		String corpo = "Ola " + reserva.getUsuario().getNome() + 
-				"\n Sua Reserva para seguinte data : " + dataInicial+ " a " + dataFinal + 
-				"\n O Status :" + reserva.getStatusReserva().getDescricao()+ 
-				"\n O Sindico tem prazo de 72 horas para validar sua reserva, você recebera um e-mail  assim que confirmando. ";
+		if (reserva.getStatusReserva().equals(StatusReserva.EXCUIDO)) {
+			corpo = "Ola " + reserva.getUsuario().getNome() + 
+					"\n A Reserva para seguinte data : " + dataInicial+ " a " + dataFinal + 
+					"\n Com Status :" + reserva.getStatusReserva().getDescricao();
+		} else {
+			corpo = "Ola " + reserva.getUsuario().getNome() +
+					"\n Sua Reserva para seguinte data : " + dataInicial+ " a " + dataFinal + 
+					"\n O Status :" + reserva.getStatusReserva().getDescricao()	+ 
+					"\n O Sindico tem prazo de 72 horas para validar sua reserva, você recebera um e-mail  assim que confirmando. ";
+		}
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(reserva.getUsuario().getEmail());
@@ -118,9 +131,8 @@ public class EmailServiceImpl implements EmailService {
 		emailSender.send(simpleMailMessage);
 	}
 
-	
 	/**
-	 *Envia para o Sindico
+	 * Envia para o Sindico
 	 */
 	@Override
 	@Async
@@ -128,8 +140,9 @@ public class EmailServiceImpl implements EmailService {
 	public void enviarNovoUsuario(Usuario usuario) {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-		String corpo = "Existe usuario pendente de : " + usuario.getNome() + "\n Favor Ativar usuario o quanto antes"
-				+ "\n O Status :" + usuario.getStatusUsuario().getDescricao();
+		String corpo = "Existe usuario pendente de : " + usuario.getNome() + 
+				"\n Favor Ativar usuario o quanto antes"+ 
+				"\n O Status :" + usuario.getStatusUsuario().getDescricao();
 
 		Usuario sindico = usuarioService.getSindico();
 
@@ -145,7 +158,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	/**
-	 *Envia nova senha de Usuario
+	 * Envia nova senha de Usuario
 	 */
 	@Override
 	@Async
@@ -153,9 +166,9 @@ public class EmailServiceImpl implements EmailService {
 		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
 		String corpo = "Caro usuario : " + usuario.getNome() + 
-				"\n Usar a seguinte senha : "+senha+
-				"\n Favor usuario troque sua senha o quanto antes."
-				+ "\n O Status :" + usuario.getStatusUsuario().getDescricao();
+				"\n Usar a seguinte senha : " + senha+ 
+				"\n Favor usuario troque sua senha o quanto antes." + 
+				"\n O Status :"	+ usuario.getStatusUsuario().getDescricao();
 
 		List<String> emails = new ArrayList<String>();
 		emails.add(usuario.getEmail());
@@ -165,7 +178,7 @@ public class EmailServiceImpl implements EmailService {
 		simpleMailMessage.setSubject(mensagem.getAssunto());
 		simpleMailMessage.setText(mensagem.getCorpo());
 
-		emailSender.send(simpleMailMessage);	
+		emailSender.send(simpleMailMessage);
 	}
 
 }

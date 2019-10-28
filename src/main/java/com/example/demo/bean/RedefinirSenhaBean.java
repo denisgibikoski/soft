@@ -33,7 +33,7 @@ public class RedefinirSenhaBean implements Serializable {
 			Usuario usuario = usuarioService.porEmail(email);
 
 			if (usuario == null) {
-				FacesUtil.addWarnMessageDetail("Nenhum usuário encontrado com o email informado.");
+				FacesUtil.addWarnMessage("Nenhum usuário encontrado com o email informado.");
 			} else {
 				
 				String senha = gerarSenhatemporaria();

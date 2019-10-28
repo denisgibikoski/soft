@@ -6,7 +6,7 @@ import java.util.Date;
 public class RestricaoHorario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Long RESTRICAO = 259200000L;
 
 	public static Long getRESTRICAO() {
@@ -14,9 +14,17 @@ public class RestricaoHorario implements Serializable {
 	}
 
 	public static boolean permite(Date dataInicial) {
-		// TODO Auto-generated method stub
-		return false;
-	} 
-	
-	
+
+		Long hoje = new Date().getTime() + getRESTRICAO();
+
+		Long restricao = dataInicial.getTime();
+
+		if (hoje <= restricao) {
+			return true;
+		} else {
+			throw new NegocioException("Não esta de acordo com o termo assinado");
+		}
+
+	}
+
 }

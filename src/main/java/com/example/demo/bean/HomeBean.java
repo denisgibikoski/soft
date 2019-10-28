@@ -104,9 +104,11 @@ public class HomeBean implements Serializable {
 
 	public void removerEvento(ActionEvent actionEvent) {
 		try {
-			service.remover(reserva);
-			publisher.publishEvent(reserva);
-			FacesUtil.addInfoMessage("Reserva Atualizada com sucesso!!!");
+				RestricaoHorario.permite(reserva.getDataFinal());
+				service.remover(reserva);
+				reserva.setStatusReserva(StatusReserva.EXCUIDO);
+				publisher.publishEvent(reserva);
+				FacesUtil.addInfoMessage("Reserva Excluida com sucesso!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.addFatalMessage(e.getMessage());
@@ -116,9 +118,7 @@ public class HomeBean implements Serializable {
 	public boolean podeRemoverEvento() {
 		if (reserva.getCodigo() != null) {
 			if (reserva.getStatusReserva() != StatusReserva.CONCLUIDO) {
-				if (RestricaoHorario.permite(reserva.getDataInicial())) {
 					return true;
-				}
 			}
 		}
 		return false;
