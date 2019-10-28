@@ -10,22 +10,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title><ui:insert>Recuperação de senha</ui:insert></title>
-	<h:outputStylesheet library="css" name="login.css" />
-	<h:outputScript target="body" library="primefaces"
-		name="jquery/jquery.js" />
-	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputScript library="js" name="index.js" />
-
-	<link rel='stylesheet'
-		href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' />
+	<!-- Font Awesome -->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+	<!-- Bootstrap core CSS -->
+	<link href="MDB/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Material Design Bootstrap -->
+	<link href="MDB/css/mdb.min.css" rel="stylesheet" />
+	<!-- Your custom styles (optional) -->
+	<link href="MDB/css/style.css" rel="stylesheet" />
 </h:head>
 <h:body>
 
-	<div id="login" style="text-align: center">
+		<div id="login" class="container-fluid card  "
+		style="background-image: url('img/background.jpg'); height: 100%;">
 		<h:form id="frm" prependId="false" styleClass="semBorda">
-
-			<p:fieldset styleClass="semBorda"
-				style="width: 34%; text-align: center;">
 				<p:messages id="messages" autoUpdate="true" closable="true" />
 				<p>
 					<p:link outcome="index" title="Home">
@@ -48,9 +47,19 @@
 					<h:button outcome="/Login" value="Voltar para o login"
 						class="button-login" icon="fa fa-mail-reply" />
 				</p>
-			</p:fieldset>
+
 
 		</h:form>
 	</div>
+	
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="MDB/js/jquery-3.4.1.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="MDB/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="MDB/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="MDB/js/mdb.min.js"></script>
 </h:body>
 </html>
