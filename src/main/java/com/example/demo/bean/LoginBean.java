@@ -43,13 +43,13 @@ public class LoginBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public void preRender() {
 		if ("true".equals(request.getParameter("invalid"))) {
 			FacesUtil.addErrorMessage("Usuário ou senha inválido!");
 		}
 	}
-	
+
 	public void login() {
 		try {
 			usuario = usuarioService.porEmail(email);

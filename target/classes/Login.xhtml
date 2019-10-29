@@ -10,17 +10,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title><ui:insert>Login</ui:insert></title>
-
-	<!-- Font Awesome -->
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-	<!-- Bootstrap core CSS -->
-	<link href="MDB/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- Material Design Bootstrap -->
-	<link href="MDB/css/mdb.min.css" rel="stylesheet" />
-	<!-- Your custom styles (optional) -->
-	<link href="MDB/css/style.css" rel="stylesheet" />
-
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputScript target="body" library="primefaces"	name="jquery/jquery.js" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="index.js" />
+	
+	
+	<link rel='stylesheet'	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' />
 </h:head>
 <h:body>
 	<f:metadata>
@@ -28,50 +24,37 @@
 		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
 	</f:metadata>
 
-	<div id="login" class="container-fluid card  "
-		style="background-image: url('img/background.jpg'); height: 100%;">
+	<div id="login" style="text-align: center">
+		<h:form id="frm" prependId="false" styleClass="semBorda">
 
-		<h:form id="frm" class="md-form text-center " >
+			<p:fieldset styleClass="semBorda"
+				style="width: 34%; text-align: center;">
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+				<p>
+					<h:graphicImage value="/resources/img/logo.png" height="70"
+						width="300" />
+				</p>
+				<p>
+					<p:inputText size="30" id="username" value="#{loginBean.email}"
+						placeholder="E-mail" />
+				</p>
+				<p>
+					<p:password size="30" id="password" placeholder="Senha" />
+				<p>
+					<p:link outcome="/redefinirSenha" value="Redefinir Senha"
+						style="margin-top: 10px" />
+				</p>
 
-
-			<p:messages id="messages" autoUpdate="true" closable="true" />
-			<p>
-				<h:graphicImage value="/resources/img/logo.png" height="70"
-					width="300" />
-			</p>
-			<p>
-				<p:inputText size="30" id="username" value="#{loginBean.email}"
-					placeholder="E-mail" />
-			</p>
-			<p>
-				<p:password size="30" id="password" placeholder="Senha" />
-			<p>
-				<p:link outcome="/redefinirSenha" value="Redefinir Senha"
-					class="btn btn-link" />
-			</p>
-
-			</p>
-			<p>
-				<h:commandButton value="Login" action="#{loginBean.login}"
-					ajax="false" class="btn btn-info btn-block" />
-			</p>
-			<p:link outcome="/cadastroUsuario" value="Cadastrar Novo Usuario"
-				class="btn btn-link" />
+				</p>
+				<p>
+					<h:commandButton value="Login" action="#{loginBean.login}"
+						styleClass="btn-login" ajax="false" />
+				</p>
+				<p:link outcome="/cadastroUsuario" value="Cadastrar Novo Usuario" />
+			</p:fieldset>
 
 		</h:form>
 	</div>
-
-
-	<!-- SCRIPTS -->
-	<!-- JQuery -->
-	<script type="text/javascript" src="MDB/js/jquery-3.4.1.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="MDB/js/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="MDB/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="MDB/js/mdb.min.js"></script>
-
-
+		
 </h:body>
 </html>
