@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().headers().frameOptions().sameOrigin().and()
 
 				.authorizeRequests()
-				.antMatchers("/Login.xhtml", "/resources/**","/cadastroUsuario.xhtml",  "/redefinirSenha.xhtml","/AcessoNegado.xhtml",  "/Erro.xhtml","/javax.faces.resource/**").permitAll()
+				.antMatchers("/Login.xhtml","/Layout.xhtml", "/resources/**","/cadastroUsuario.xhtml",  "/redefinirSenha.xhtml","/AcessoNegado.xhtml",  "/Erro.xhtml","/javax.faces.resource/**").permitAll()
 				.antMatchers("/index.xhtml","/cadastroEvento.xhtml").authenticated()
 				.antMatchers("/listaUsuarios.xhtml").hasAnyRole("SINDICO")
 				.antMatchers("/listaUnidadeMoradia.xhtml").hasAnyRole("SINDICO")

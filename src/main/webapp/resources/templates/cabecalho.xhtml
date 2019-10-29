@@ -3,38 +3,66 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	<h:form>
-		<div style="float: left; margin-left: 15px; margin-top: 5px">
-			<p:menubar>
-				<p:menuitem>
-					<p:link outcome="index" title="Home">
-						<h:graphicImage value="/resources/img/logo.png" width="81"
-							height="30" style="margin: 10px;" />
-					</p:link>
-				</p:menuitem>
-			</p:menubar>
-		</div>
 
-		<div style="float: right; margin-right: 20px;">
-			<h:form style="display: inline-block">
-				<p:row>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light white">
 
-					<p:row rendered="#{seguranca.usuarioLogado.usuario.codigo != null}">
-						<p:outputLabel
-							value="#{seguranca.usuarioLogado.usuario.statusUsuario.descricao} : Procure o Administrador"
-							rendered="#{seguranca.usuarioLogado.usuario.statusUsuario != 'ATIVO'}"
-							style=" margin-right: 20px" />
+		<div class="container">
 
-					</p:row>
-					<p:outputLabel value="#{seguranca.nomeUsuario}"
-						style=" margin-right: 20px" />
+			<p:link outcome="index" title="Home">
+				<h:graphicImage value="/resources/img/logo.png" width="81"
+					height="30" style="margin: 10px;" />
+			</p:link>
 
-					<p:linkButton rendered="#{seguranca.usuarioLogado != null}"
-						value="Sair" href="#{request.contextPath}/logout" />
+			<!-- Collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#basicExampleNav" aria-controls="basicExampleNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Links -->
+			<div class="collapse navbar-collapse" id="basicExampleNav">
+
+				<!-- Left -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link waves-effect"
+						href="https://mdbootstrap.com/docs/jquery/" target="_blank">jQuery</a>
+					</li>
+					<li class="nav-item"><a class="nav-link waves-effect"
+						href="https://mdbootstrap.com/docs/angular/" target="_blank">Angular</a>
+					</li>
+					<li class="nav-item"><a class="nav-link waves-effect"
+						href="https://mdbootstrap.com/docs/react/" target="_blank">React</a>
+					</li>
+					<li class="nav-item"><a class="nav-link waves-effect"
+						href="https://mdbootstrap.com/docs/vue/" target="_blank">Vue</a></li>
+				</ul>
+
+				<!-- Right -->
+				<p:row rendered="#{seguranca.usuarioLogado.usuario.codigo != null}">
+					<ul class="navbar-nav nav-flex-icons">
+						<p:row>
+							<li
+								class="nav-item nav-link border border-light rounded waves-effect mr-2">
+								<i class="fas fa-user mr-1"></i> <p:outputLabel
+									value="#{seguranca.usuarioLogado.usuario.statusUsuario.descricao} : Procure o Administrador"
+									rendered="#{seguranca.usuarioLogado.usuario.statusUsuario != 'ATIVO'}"
+									style=" margin-right: 20px" /> <p:outputLabel
+									value="#{seguranca.nomeUsuario}" style=" margin-right: 20px" />
+								<p:linkButton rendered="#{seguranca.usuarioLogado != null}"
+									class="btn btn-danger" value="Sair"
+									href="#{request.contextPath}/logout" />
+
+							</li>
+						</p:row>
+					</ul>
 				</p:row>
+			</div>
 
-			</h:form>
 		</div>
 
-	</h:form>
+	</nav>
+	<!--/.Navbar-->
+
 </ui:fragment>
