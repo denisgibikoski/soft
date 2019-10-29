@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.authorizeRequests()
 				.antMatchers("/Login.xhtml", "/resources/**","/cadastroUsuario.xhtml",  "/redefinirSenha.xhtml","/AcessoNegado.xhtml",  "/Erro.xhtml","/javax.faces.resource/**").permitAll()
-				.antMatchers("/index.xhtml","/cadastroEvento.xhtml" ,"/dialogos/**").authenticated()
+				.antMatchers("/index.xhtml","/cadastroEvento.xhtml").authenticated()
 				.antMatchers("/listaUsuarios.xhtml").hasAnyRole("SINDICO")
 				.antMatchers("/listaUnidadeMoradia.xhtml").hasAnyRole("SINDICO")
 				.antMatchers("/listaEventos.xhtml").hasAnyRole("SINDICO")

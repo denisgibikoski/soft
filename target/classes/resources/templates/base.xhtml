@@ -6,20 +6,32 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"></link>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- ALTERAR TÍTULO DA PÁGINA -->
 	<title><ui:insert name="titulo"></ui:insert></title>
 
-	<h:outputStylesheet library="css" name="custom_styles.css" />
-	<h:outputStylesheet library="css" name="sistema.css" />
-	<h:outputStylesheet library="css" name="app.css" />
-	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
-	<h:outputScript library="js" name="jquery.maskMoney.js" />
-	<h:outputScript library="js" name="primefaces-pt.js" />
-		
+	<!-- CSS -->
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="mdb.min.css" />
+	<h:outputStylesheet library="MDB/css" name="style.css" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+
+
+	<!-- SCRIPTS -->
+	<h:outputScript library="js" name="index.js" />
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="popper.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="mdb.min.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
+
 </h:head>
 <h:body>
 
@@ -30,7 +42,7 @@
 			<ui:include src="cabecalho.xhtml" />
 		</p:layoutUnit>
 		<!-- MENU LATERAL ESQUERDO -->
-		<p:layoutUnit position="west" header="Menu" size="250"  
+		<p:layoutUnit position="west" header="Menu" size="250"
 			collapsible="true">
 			<ui:include src="menu.xhtml" />
 		</p:layoutUnit>
@@ -61,7 +73,7 @@
 			<h:outputText />
 		</f:facet>
 	</p:ajaxStatus>
-		
+
 </h:body>
 </html>
 
