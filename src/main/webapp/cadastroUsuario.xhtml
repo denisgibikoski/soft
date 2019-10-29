@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-	template="/resources/templates/base.xhtml">
+	template="/resources/templates/layout.xhtml">
 
 	<f:metadata>
 		<o:viewParam name="usuario" value="#{usuariosBean.usuario}" />
@@ -106,12 +106,12 @@
 				<center>
 
 					<p:button value="Voltar" outcome="/index"
-						icon="fa far fa-arrow-alt-circle-left" style="margin-top: 20px"
-						class="button-salvar" immediate="true" id="voltar-button"
+						 style="margin-top: 20px"
+						class="btn btn-info" immediate="true" id="voltar-button"
 						update="msg" />
 
-					<p:commandButton value="Salvar" icon="fa far fa-save"
-						style="margin-top: 20px" process="@form" class="button-salvar"
+					<p:commandButton value="Salvar" 
+						style="margin-top: 20px" process="@form" class="btn btn-primary"
 						id="salvar-button" action="#{usuariosBean.novoUsuario}"
 						update="msg usuarios-table" />
 
