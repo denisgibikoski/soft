@@ -10,13 +10,28 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title><ui:insert>Login</ui:insert></title>
+
+	<!-- CSS -->
 	<h:outputStylesheet library="css" name="login.css" />
-	<h:outputScript target="body" library="primefaces"	name="jquery/jquery.js" />
 	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="mdb.min.css" />
+	<h:outputStylesheet library="MDB/css" name="style.css" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+
+
+	<!-- SCRIPTS -->
 	<h:outputScript library="js" name="index.js" />
-	
-	
-	<link rel='stylesheet'	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' />
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="popper.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="mdb.min.js" />
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
+
 </h:head>
 <h:body>
 
@@ -25,37 +40,59 @@
 		<f:event listener="#{loginBean.preRender}" type="preRenderView" />
 	</f:metadata>
 
-	<div id="login" style="text-align: center">
-		<h:form id="frm" prependId="false" styleClass="semBorda">
+	<div id="login" style="text-align: center" class="container mt-5">
 
-			<p:fieldset styleClass="semBorda"
-				style="width: 34%; text-align: center;">
-				<p:messages id="messages" autoUpdate="true" closable="true" />
-				<p>
-					<h:graphicImage value="/resources/img/logo.png" height="70"
-						width="300" />
-				</p>
-				<p>
-					<p:inputText size="30" id="username" value="#{loginBean.email}"
-						placeholder="E-mail" />
-				</p>
-				<p>
-					<p:password size="30" id="password" placeholder="Senha" />
-				<p>
-					<p:link outcome="/redefinirSenha" value="Redefinir Senha"
-						style="margin-top: 10px" />
-				</p>
+		<!--Section: Content-->
+		<section
+			class="p-5 my-md-5 text-center text-lg-left z-depth-1 rounded"
+			style="background-image: url(img/background.jpg); background-size: cover; background-position: center center;">
 
-				</p>
-				<p>
-					<h:commandButton value="Login" action="#{loginBean.login}"
-						styleClass="btn-login" ajax="false" />
-				</p>
-				<p:link outcome="/cadastroUsuario" value="Cadastrar Novo Usuario" />
-			</p:fieldset>
+			<div class="row">
+				<div class="col-md-6 mx-auto">
+					<!-- Material form login -->
+					<div class="card">
 
-		</h:form>
+						<!--Card content-->
+						<div class="card-body">
+
+
+							<h:form id="frm" prependId="false"
+								styleClass="my-5 mx-md-5 semBorda text-center ">
+
+
+								<p:messages id="messages" autoUpdate="true" closable="true" />
+								<p>
+									<h:graphicImage value="/resources/img/logo.png" height="70"
+										width="300" />
+								</p>
+								<p>
+									<p:inputText size="30" id="username" value="#{loginBean.email}"
+										placeholder="E-mail" />
+								</p>
+								<p>
+									<p:password size="30" id="password" placeholder="Senha" />
+								</p>
+								<p>
+									<p:link outcome="/redefinirSenha" value="Redefinir Senha"
+										styleClass="btn btn-link" />
+								</p>
+								<p>
+									<h:commandButton value="Login" action="#{loginBean.login}"
+										styleClass="btn btn-primary" ajax="false" />
+								</p>
+								<p:link outcome="/cadastroUsuario"
+									value="Cadastrar Novo Usuario" styleClass="btn btn-link" />
+
+							</h:form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<!--Section: Content-->
 	</div>
-		
+
 </h:body>
 </html>

@@ -24,8 +24,6 @@
 	<div id="login" style="text-align: center">
 		<h:form id="frm" prependId="false" styleClass="semBorda">
 
-			<p:fieldset styleClass="semBorda"
-				style="width: 34%; text-align: center;">
 				<p:messages id="messages" autoUpdate="true" closable="true" />
 				<p>
 					<p:link outcome="index" title="Home">
@@ -43,12 +41,11 @@
 				<p>
 					<h:commandButton value="Redefinir Senha"
 						action="#{redefinirSenhaBean.redifinirSenha}"
-						styleClass="btn-login" ajax="false" />
+						styleClass="btn btn-primary" ajax="false" />
 						
 					<h:button outcome="/Login" value="Voltar para o login"
 						class="button-login" icon="fa fa-mail-reply" />
 				</p>
-			</p:fieldset>
 
 		</h:form>
 	</div>
