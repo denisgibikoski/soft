@@ -2,10 +2,12 @@
 
 .event-default {
 	background-color: rgba(3, 169, 244, 0.7) !important;
+	color: White !important;
 }
 
 .event-CADASTRO {
 	background-color: rgba(76, 175, 80, 0.7) !important;
+	color: White !important;
 }
 
 .event-PEDENTE {
@@ -15,6 +17,7 @@
 
 .event-RESERVADO {
 	background-color: rgba(233, 30, 99, 0.7) !important;
+	color: White !important;
 }
 
 .event-CONCLUIDO {
@@ -24,6 +27,7 @@
 
 .event-EXCUIDO {
 	background-color: rgba(96, 125, 139, 0.7) !important;
+	color: White !important;
 }
 
 body {
