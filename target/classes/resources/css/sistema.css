@@ -1,23 +1,29 @@
 @charset "utf-8";
 
-
 .event-default {
-	background-color: #90caf9 !important;
+	background-color: rgba(3, 169, 244, 0.7) !important;
 }
+
 .event-CADASTRO {
-	background-color: #2196f3 !important;
+	background-color: rgba(76, 175, 80, 0.7) !important;
 }
+
 .event-PEDENTE {
-	background-color: #1e88e5 !important;
+	background-color: rgba(156, 39, 176, 0.7)  !important;
+	color: White !important;
 }
+
 .event-RESERVADO {
-	background-color: #1565c0 !important;
+	background-color: rgba(233, 30, 99, 0.7) !important;
 }
+
 .event-CONCLUIDO {
-	background-color: #0d47a1 !important;
+	background-color: rgba(0, 150, 136, 0.7) !important;
+	color: White !important;
 }
+
 .event-EXCUIDO {
-	background-color: #e3f2fd !important;
+	background-color: rgba(96, 125, 139, 0.7) !important;
 }
 
 body {
@@ -44,7 +50,7 @@ header {
 	box-shadow: 0px 2px 2px #ccc;
 }
 
-header > div {
+header>div {
 	margin-left: 8px
 }
 
@@ -63,7 +69,6 @@ h1 {
 	padding: 0px;
 	margin: 0px
 }
-
 
 #login-dialog {
 	width: 290px;
@@ -94,7 +99,6 @@ h1 {
 	width: 80px
 }
 
-
 .ui-panelgrid td {
 	border: none !important;
 	height: 34px;
@@ -104,7 +108,6 @@ h1 {
 	position: fixed;
 	top: 60px;
 	right: 10px;
-
 }
 
 .ui-selectmanycheckbox td {
@@ -126,49 +129,65 @@ h1 {
 
 /* Customiza TabView - início */
 .ui-tabs .ui-tabs-panel {
-    padding: 0.5em 0.2em !important;
+	padding: 0.5em 0.2em !important;
 }
 
 .ui-tabs {
-    padding: 0px !important;
+	padding: 0px !important;
 }
 
 .ui-tabs .ui-tabs-nav {
-    margin: -1px !important;
+	margin: -1px !important;
 }
 
-.ui-tabs.ui-tabs-top > .ui-tabs-nav {
-    padding: 0px !important;
+.ui-tabs.ui-tabs-top>.ui-tabs-nav {
+	padding: 0px !important;
 }
 /* Customiza TabView - fim */
 
 /* Menu sistema inicio */
 .menu-sistema {
-    border: 0px !important;
-    padding: 0px !important;
-    background: none !important;
+	border: 0px !important;
+	padding: 0px !important;
+	background: none !important;
 }
 
-.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
-    color: #ffffff !important;
+.menu-sistema .ui-menu-parent>a .ui-menuitem-text, .menu-sistema>.ui-menu-list>.ui-menuitem>a>.ui-menuitem-text
+	{
+	color: #ffffff !important;
 }
 
 .menu-sistema .ui-icon-triangle-1-s {
-    background: url(#{resource['images:seta-para-baixo.png']}) no-repeat !important;
+	background: url(#{ resource [ 'images:seta-para-baixo.png' ]
+}
+
+)
+no-repeat
+ 
+!
+important
+;
+
+
 }
 /* Menu sistema fim */
-
 .ui-state-disabled {
 	opacity: .80 !important;
 }
 
-.ui-growl {   
-    position:fixed;
-    margin-top:50px;
-    margin-right:25px;
+.ui-growl {
+	position: fixed;
+	margin-top: 50px;
+	margin-right: 25px;
 }
 
+.ui-growl-item {
+	color: white;
+	background-color: #3699db;
+	border-color: black;
+}
 
-.ui-growl-item{color:white;background-color:#3699db; border-color: black;}
-
-.ui-growl-item-container {background-color:#3699db;border-color:black;  }
+.ui-growl-item-container {
+	background-color: #3699db;
+	border-color: black;
+}
