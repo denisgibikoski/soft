@@ -12,6 +12,7 @@
 	<title><ui:insert name="titulo"></ui:insert></title>
 
 	<!-- CSS -->
+	<h:outputStylesheet library="css" name="sistema.css" />
 	<h:outputStylesheet library="css" name="login.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -34,18 +35,18 @@
 </h:head>
 <h:body>
 
-	<p:layout fullPage="true" >
+	<p:layout fullPage="true"  class="border border-0" >
 		<!-- TOPO -->
-		<p:layoutUnit position="north" >
+		<p:layoutUnit position="north" class="border border-0 "  >
 			<ui:include src="cabecalho.xhtml" />
 		</p:layoutUnit>
 		<!-- MENU LATERAL ESQUERDO -->
-		<p:layoutUnit position="west" header="Menu" size="250"
-			collapsible="true">
+		<p:layoutUnit position="west" size="200"
+			collapsible="true" class="border border-0">
 			<ui:include src="menu.xhtml" />
 		</p:layoutUnit>
 		<!-- CENTRO -->
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center" class="border border-0">
 			<!-- CONTEÚDO DINÂMICO -->
 			<ui:insert name="conteudo"></ui:insert>
 		</p:layoutUnit>

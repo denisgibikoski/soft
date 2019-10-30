@@ -2,22 +2,22 @@
 
 
 .event-default {
-	background-color: #A9A9A9 !important;
+	background-color: #90caf9 !important;
 }
 .event-CADASTRO {
-	background-color: #CFCFCF !important;
+	background-color: #2196f3 !important;
 }
 .event-PEDENTE {
-	background-color: #B5B5B5 !important;
+	background-color: #1e88e5 !important;
 }
 .event-RESERVADO {
-	background-color: #828282 !important;
+	background-color: #1565c0 !important;
 }
 .event-CONCLUIDO {
-	background-color: #4F4F4F !important;
+	background-color: #0d47a1 !important;
 }
 .event-EXCUIDO {
-	background-color: #1C1C1C !important;
+	background-color: #e3f2fd !important;
 }
 
 body {

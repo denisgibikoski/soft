@@ -4,10 +4,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-	<!--Navbar-->
-	<nav class="navbar navbar-expand-lg navbar-light white">
+	<div>
 
-		<div class="container">
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-lg navbar-light white ">
 
 			<p:link outcome="index" title="Home">
 				<h:graphicImage value="/resources/img/logo.png" width="81"
@@ -26,17 +26,7 @@
 
 				<!-- Left -->
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link waves-effect"
-						href="https://mdbootstrap.com/docs/jquery/" target="_blank">jQuery</a>
-					</li>
-					<li class="nav-item"><a class="nav-link waves-effect"
-						href="https://mdbootstrap.com/docs/angular/" target="_blank">Angular</a>
-					</li>
-					<li class="nav-item"><a class="nav-link waves-effect"
-						href="https://mdbootstrap.com/docs/react/" target="_blank">React</a>
-					</li>
-					<li class="nav-item"><a class="nav-link waves-effect"
-						href="https://mdbootstrap.com/docs/vue/" target="_blank">Vue</a></li>
+
 				</ul>
 
 				<!-- Right -->
@@ -45,7 +35,7 @@
 						<p:row>
 							<li
 								class="nav-item nav-link border border-light rounded waves-effect mr-2">
-								<i class="fas fa-user mr-1"></i> <p:outputLabel
+								<i class="fas fa-user-circle mr-1"></i> <p:outputLabel
 									value="#{seguranca.usuarioLogado.usuario.statusUsuario.descricao} : Procure o Administrador"
 									rendered="#{seguranca.usuarioLogado.usuario.statusUsuario != 'ATIVO'}"
 									style=" margin-right: 20px" /> <p:outputLabel
@@ -60,9 +50,8 @@
 				</p:row>
 			</div>
 
-		</div>
-
-	</nav>
-	<!--/.Navbar-->
+		</nav>
+		<!--/.Navbar-->
+	</div>
 
 </ui:fragment>
