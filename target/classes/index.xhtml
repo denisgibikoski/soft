@@ -17,20 +17,17 @@
 			<p:messages id="messages" autoUpdate="true" closable="true" />
 			<p:growl id="growl" showDetail="true" sticky="true" />
 
-			<p:toolbar id="toolbar" style=" margin-top:15px">
 				<p:toolbarGroup>
 					<p:button
 						rendered="#{homeBean.reserva.usuario.statusUsuario == 'ATIVO'}"
-						class="button-pesquisa" icon="fa fas fa-plus-circle"
+						class="btn btn-primary btn-rounded" icon="fa fas fa-plus-circle"
 						value="Novo Evento" outcome="/cadastroEvento" process="@this">
 					</p:button>
 
 				</p:toolbarGroup>
 
-			</p:toolbar>
-
 			<p:schedule value="#{homeBean.reservas}" locale="pt" view="month"
-				rightHeaderTemplate="" style="margin-top:15px" draggable="false"
+				rightHeaderTemplate="" style="margin-top:15px" draggable="false" styleClass=""
 				widgetVar="myschedule" initialDate="#{homeBean.hoje}">
 
 				<!-- 			<p:ajax event="dateSelect" listener="#{homeBean.onDateSelect}"

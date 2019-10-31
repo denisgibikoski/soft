@@ -61,10 +61,13 @@
 								<p>
 									<p:outputLabel value="E-mail para definir senha " />
 								</p>
-								<p>
-									<p:inputText size="30" id="username"
-										value="#{redefinirSenhaBean.email}" placeholder="E-mail" />
-								</p>
+
+								<div class="md-form">
+									<p:inputText size="30" id="username" class="form-control"
+										value="#{redefinirSenhaBean.email}" />
+									<p:outputLabel for="username" value="E-mail" />
+								</div>
+
 								<p>
 									<h:commandButton value="Redefinir Senha"
 										action="#{redefinirSenhaBean.redifinirSenha}"

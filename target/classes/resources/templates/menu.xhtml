@@ -4,24 +4,28 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+	<h:form>
 
-	<p:menu rendered="#{seguranca.usuarioLogado.usuario.sindico == true}"
-		class="nav flex-column grey lighten-4 py-4 border border-0">
+		<p:menu rendered="#{seguranca.usuarioLogado.usuario.sindico == true}"
+			class="nav flex-column grey lighten-4 py-4 border border-0">
 
-		<p:menuitem value="  Eventos " outcome="listaEventos"
-			icon="fas fa-calendar-alt" iconPos="right" />
-		<p:menuitem value=" Usuarios " outcome="listaUsuarios"
-			icon="fas fa-male" />
-		<p:menuitem value=" Moradias " outcome="listaUnidadeMoradia"
-			icon="fas fa-warehouse" iconPos="right" />
+			<p:menuitem value="  Eventos " outcome="listaEventos"
+				icon="fas fa-calendar-alt" iconPos="right" />
+			<p:menuitem value=" Usuarios " outcome="listaUsuarios"
+				icon="fas fa-male" />
+			<p:menuitem value=" Moradias " outcome="listaUnidadeMoradia"
+				icon="fas fa-warehouse" iconPos="right" />
 
-	</p:menu>
+		</p:menu>
 
-	<p:menu rendered="#{seguranca.usuarioLogado.usuario.sindico == false}">
+		<p:menu rendered="#{seguranca.usuarioLogado.usuario.sindico == false}"
+			class="nav flex-column grey lighten-4 py-4 border border-0">
 
-		<p:menuitem value="Edita Usuario" icon="fas fa-portrait"
-			iconPos="right" action="#{homeBean.redicionaCadastroUsuario}" />
+			<p:menuitem value="Edita Usuario" icon="fas fa-portrait"
+				iconPos="right" action="#{homeBean.redicionaCadastroUsuario}" />
 
-	</p:menu>
+		</p:menu>
+
+	</h:form>
 
 </ui:fragment>

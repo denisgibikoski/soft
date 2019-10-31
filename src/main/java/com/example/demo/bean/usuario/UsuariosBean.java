@@ -72,7 +72,7 @@ public class UsuariosBean implements Serializable {
 
 	public void novoUsuario() {
 		try {
-			if (morador) {
+			if (morador == true) {
 				usuario.setTipoUsuario(TipoUsuario.MORADOR);	
 			}else {
 				usuario.getMoradia().setUnidade(000);

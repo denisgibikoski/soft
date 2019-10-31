@@ -65,13 +65,19 @@
 									<h:graphicImage value="/resources/img/logo.png" height="70"
 										width="300" />
 								</p>
-								<p>
+
+								<div class="md-form">
 									<p:inputText size="30" id="username" value="#{loginBean.email}"
-										placeholder="E-mail" />
-								</p>
-								<p>
-									<p:password size="30" id="password" placeholder="Senha" />
-								</p>
+										class="form-control" />
+									<p:outputLabel for="username" value="E-mail" />
+								</div>
+
+
+								<div class="md-form">
+									<p:password size="30" id="password" class="form-control" />
+									<p:outputLabel for="password" value="Password" />
+								</div>
+
 								<p>
 									<p:link outcome="/redefinirSenha" value="Redefinir Senha"
 										styleClass="btn btn-link" />
