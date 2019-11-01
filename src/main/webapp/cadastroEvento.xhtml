@@ -67,13 +67,14 @@
 								value="#{cadastroEventoBean.reserva.descricao}" />
 						</p:row>
 
-
 						<p:outputLabel value="Data Inicial : " for="dataIni" />
 						<p:calendar id="dataIni"
+							onchange="#{cadastroEventoBean.iniDataIni()}"
 							requiredMessage="Necessario ter Data Inicial"
 							value="#{cadastroEventoBean.reserva.dataInicial}" required="true"
 							navigator="true" label="Data inicial" pattern="dd/MM/yyyy HH:mm"
 							mindate="#{cadastroEventoBean.hoje}" mask="true" locale="pt">
+
 							<p:ajax event="dateSelect" update="dataFin" />
 						</p:calendar>
 
@@ -84,7 +85,7 @@
 							mask="true" label="Data final"
 							mindate="#{cadastroEventoBean.reserva.dataInicial}"
 							pattern="dd/MM/yyyy HH:mm" locale="pt">
-							<p:ajax event="dateSelect" update="dataFin" process="@this"  />
+							<p:ajax event="dateSelect" update="dataFin" process="@this" />
 						</p:calendar>
 
 
@@ -111,11 +112,11 @@
 
 						<p:outputLabel value="Assinatura : " />
 						<p:row>
-							<p:signature style="width:400px;height:200px" widgetVar="sig" 
-								value="#{cadastroEventoBean.reserva.assinatura}" 
-								guideline="true" >
+							<p:signature style="width:400px;height:200px" widgetVar="sig"
+								value="#{cadastroEventoBean.reserva.assinatura}"
+								guideline="true">
 
-								</p:signature>
+							</p:signature>
 
 							<div style="margin: 20px 0">
 								<p:commandButton value="Clear" icon="pi pi-times" type="button"
@@ -137,8 +138,8 @@
 
 					<p:commandButton value="Salvar" icon="fa far fa-save"
 						style="margin-top: 20px" process="@form" class="button-salvar"
-						id="salvar-button" action="#{cadastroEventoBean.novoEvento}" actionListener="#{cadastroEventoBean.ativaTermo}"
-						update="msg " />
+						id="salvar-button" action="#{cadastroEventoBean.novoEvento}"
+						actionListener="#{cadastroEventoBean.ativaTermo}" update="msg " />
 
 				</center>
 			</p:fieldset>

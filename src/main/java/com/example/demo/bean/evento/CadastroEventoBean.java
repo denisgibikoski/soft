@@ -48,7 +48,7 @@ public class CadastroEventoBean implements Serializable {
 		Date tesDate = new Date();
 		tesDate.setTime(aux);
 		setHoje(tesDate);
-
+		
 		limpar();
 		FacesContext fContext = FacesContext.getCurrentInstance();
 		if (fContext != null) {
@@ -60,6 +60,10 @@ public class CadastroEventoBean implements Serializable {
 				request.removeAttribute("usuario");
 			}
 		}
+	}
+	
+	public void iniDataIni() {
+		reserva.setDataInicial(getHoje());
 	}
 
 	public void novoEvento() {
