@@ -62,8 +62,9 @@ public class CadastroEventoBean implements Serializable {
 		}
 	}
 	
-	public void iniDataIni() {
+	public void iniData() {
 		reserva.setDataInicial(getHoje());
+		reserva.setDataFinal(getHoje());
 	}
 
 	public void novoEvento() {
