@@ -46,6 +46,7 @@ public class Usuario implements Serializable {
 	private String cpf;
 
 	@Email
+	@Column(unique = true)
 	private String email;
 
 	private String nome;
