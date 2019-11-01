@@ -69,25 +69,30 @@
 <h:body>
 
 	<p:layout fullPage="true" class="border border-0">
+	
 		<!-- TOPO -->
 		<p:layoutUnit id="topo" position="north" class="border border-0 ">
 			<ui:include src="cabecalho.xhtml" />
 		</p:layoutUnit>
+		
 		<!-- MENU LATERAL ESQUERDO -->
 		<p:layoutUnit position="west" size="200" collapsible="true"
 			class="border border-0">
 			<ui:include src="menu.xhtml" />
 		</p:layoutUnit>
+		
 		<!-- CENTRO -->
 		<p:layoutUnit position="center" class="border border-0">
 			<!-- CONTEÚDO DINÂMICO -->
 			<ui:insert name="conteudo"></ui:insert>
 		</p:layoutUnit>
 	</p:layout>
+	
 	<!-- MENSAGENS -->
 	<p:growl>
 		<p:autoUpdate />
 	</p:growl>
+	
 	<!-- CONFIRMAÇÃO -->
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
 		<p:commandButton value="Sim" type="button"
@@ -95,6 +100,7 @@
 		<p:commandButton value="Não" type="button"
 			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 	</p:confirmDialog>
+	
 	<!-- EXIBE GIF EM REQUISIÇÕES AJAX -->
 	<p:ajaxStatus id="ajaxStatusPanel"
 		style="position: absolute; right: 3%; top: 90%;">

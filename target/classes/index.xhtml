@@ -32,12 +32,13 @@
 
 				<!-- 			<p:ajax event="dateSelect" listener="#{homeBean.onDateSelect}"
 				update="eventDetails" oncomplete="PF('eventDialog').show();" /> -->
+				
 				<p:ajax event="eventSelect" listener="#{homeBean.onEventSelect}"
-					update="eventDetails" oncomplete="PF('eventDialog').show();" />
+						update="eventDetails" oncomplete="PF('eventDialog').show();" />
 
 			</p:schedule>
 
-			<p:dialog widgetVar="eventDialog" header="Event Details"
+			<p:dialog widgetVar="eventDialog" header="Reserva "
 				showEffect="clip" hideEffect="clip">
 				<h:panelGrid id="eventDetails" columns="2">
 

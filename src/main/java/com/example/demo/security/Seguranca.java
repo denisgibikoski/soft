@@ -28,6 +28,15 @@ public class Seguranca {
 
 		return nome;
 	}
+	
+	public boolean isSindico() {
+		if (getUsuarioLogado().getUsuario().isSindico()) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 	public UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
