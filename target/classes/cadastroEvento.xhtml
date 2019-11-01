@@ -68,8 +68,8 @@
 						</p:row>
 
 						<p:outputLabel value="Data Inicial : " for="dataIni" />
+						<f:event type="preRenderView" listener="#{cadastroEventoBean.iniDataIni()}" />
 						<p:calendar id="dataIni"
-							onchange="#{cadastroEventoBean.iniDataIni()}"
 							requiredMessage="Necessario ter Data Inicial"
 							value="#{cadastroEventoBean.reserva.dataInicial}" required="true"
 							navigator="true" label="Data inicial" pattern="dd/MM/yyyy HH:mm"
