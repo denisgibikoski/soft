@@ -68,26 +68,25 @@
 						</p:row>
 
 						<p:outputLabel value="Data Inicial : " for="dataIni" />
-						<f:event type="preRenderView" listener="#{cadastroEventoBean.iniDataIni()}" />
 						<p:calendar id="dataIni"
 							requiredMessage="Necessario ter Data Inicial"
 							value="#{cadastroEventoBean.reserva.dataInicial}" required="true"
 							navigator="true" label="Data inicial" pattern="dd/MM/yyyy HH:mm"
 							mindate="#{cadastroEventoBean.hoje}" mask="true" locale="pt">
 
-							<p:ajax event="dateSelect" update="dataFin" />
+							<p:ajax event="dateSelect" update="dataFin" process="@this" />
 						</p:calendar>
 
 						<p:outputLabel value="Data Final : " for="dataFin" />
 						<p:calendar id="dataFin" required="true"
 							requiredMessage="Necessario ter Data Final"
 							value="#{cadastroEventoBean.reserva.dataFinal}" navigator="true"
-							mask="true" label="Data final"
+							mask="true" label="Data final" 
 							mindate="#{cadastroEventoBean.reserva.dataInicial}"
 							pattern="dd/MM/yyyy HH:mm" locale="pt">
+							
 							<p:ajax event="dateSelect" update="dataFin" process="@this" />
 						</p:calendar>
-
 
 						<p:outputLabel value="Quantidade de Pessoas :" for="quantPessoas" />
 						<p:inputMask mask="99" id="quantPessoas" required="true"
@@ -124,7 +123,6 @@
 									onclick="PF('sig').clear()" />
 							</div>
 						</p:row>
-
 
 					</p:panelGrid>
 

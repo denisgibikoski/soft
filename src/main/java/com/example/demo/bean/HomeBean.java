@@ -17,10 +17,12 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.example.demo.model.Reserva;
 import com.example.demo.model.enums.StatusReserva;
 import com.example.demo.security.Seguranca;
+import com.example.demo.security.model.UsuarioSistema;
 import com.example.demo.service.ReservaService;
 import com.example.demo.util.FacesUtil;
 import com.example.demo.util.RestricaoHorario;
@@ -116,13 +118,21 @@ public class HomeBean implements Serializable {
 	}
 
 	public boolean podeRemoverEvento() {
-		if (reserva.getCodigo() != null && seguranca.isSindico()) {
-			if (reserva.getStatusReserva() != StatusReserva.CONCLUIDO
-					&& seguranca.getUsuarioLogado().getUsuario().getNome().equals(reserva.getUsuario().getNome())) {
+		if (reserva.getCodigo() != null ) {
+			if (seguranca.isSindico()) {
+				return true;
+			}else			
+			if (reserva.getStatusReserva() != StatusReserva.CONCLUIDO && reserva.getUsuario().getNome().equals(getNomeUsuarioLogado())) {
 				return true;
 			}
+			
 		}
 		return false;
+	}
+
+	private String getNomeUsuarioLogado() {
+		UsuarioSistema usuario = (UsuarioSistema) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	
+		return  usuario.getUsuario().getNome();
 	}
 
 	public boolean habilitarDescricao() {

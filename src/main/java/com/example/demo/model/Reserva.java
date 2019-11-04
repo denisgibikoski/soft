@@ -37,10 +37,10 @@ public class Reserva  implements Serializable {
 	private Usuario usuario;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataInicial;
+	private Date dataInicial = new Date();
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataFinal;
+	private Date dataFinal = new Date();
 	
 	@Length(max = 1024)
 	private String descricao;
