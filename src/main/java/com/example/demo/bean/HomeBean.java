@@ -110,6 +110,7 @@ public class HomeBean implements Serializable {
 			service.remover(reserva);
 			reserva.setStatusReserva(StatusReserva.EXCUIDO);
 			publisher.publishEvent(reserva);
+			inicializar();
 			FacesUtil.addInfoMessage("Reserva Excluida com sucesso!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
