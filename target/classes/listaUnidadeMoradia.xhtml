@@ -29,16 +29,16 @@
 
 				<p:dataTable value="#{listaMoradiaBean.listUnidadeMoradia}"
 					var="unidade" emptyMessage="Nenhuma unidade cadastrada." rows="15"
-					paginator="true" paginatorPosition="bottom" styleClass="myTable"
+					paginator="true" paginatorPosition="bottom" 
 					style="margin-top: 10px" id="unidades-table" reflow="true"
 					paginatorAlwaysVisible="false" rowKey="#{unidade.codigo}">
 
-					<p:column style="text-align: center; width: 100px"
+					<p:column style="text-align: center; width: 100px" 
 						exportable="false" headerText="Opções">
 
 						<p:commandButton icon="fa far fa-trash-alt" title="Excluir"
-							class="button-pesquisa" process="@this"
-							update=":frm:unidades-table :frm:msg"
+							class="btn btn-danger" process="@this"
+							update=":frm:unidades-table :frm:msg" 
 							action="#{listaMoradiaBean.excluir(unidade)}">
 							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
 								message="Tem certeza que deseja excluir o usuario" />

@@ -46,12 +46,12 @@
 						exportable="false" headerText="Opções">
 
 						<p:button icon="fa far fa-pencil-alt" title="Editar"
-							class="button-pesquisa" outcome="cadastroUsuario">
+							class="btn btn-info" outcome="cadastroUsuario">
 							<f:param name="usuario" value="#{usuario.codigo}" />
 						</p:button>
 
 						<p:commandButton icon="fa far fa-trash-alt" title="Excluir"
-							class="button-pesquisa" process="@this"
+							class="btn btn-danger" process="@this"
 							update=":frm:usuarios-table :frm:toolbar :frm:msg"
 							action="#{listaUsuariosBean.excluir(usuario)}">
 							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"

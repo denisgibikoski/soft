@@ -29,20 +29,19 @@
 
 				<p:dataTable value="#{listaEventosBean.todosEventos}" var="reserva"
 					emptyMessage="Nenhum cadastrado." rows="15" paginator="true"
-					paginatorPosition="bottom" styleClass="myTable" 
-					style="margin-top: 10px" id="usuarios-table" reflow="true"
+					paginatorPosition="bottom" style="margin-top: 10px" id="usuarios-table" reflow="true"
 					paginatorAlwaysVisible="true" rowKey="#{reserva.codigo}">
 
 					<p:column style="text-align: center; width: 100px"
 						exportable="false" headerText="Opções">
 
 						<p:button icon="fa far fa-pencil-alt" title="Editar"
-							class="button-pesquisa" outcome="cadastroEvento">
+							class="btn btn-info" outcome="cadastroEvento">
 							<f:param name="reserva" value="#{reserva.codigo}" />
 						</p:button>
 
 						<p:commandButton icon="fa far fa-trash-alt" title="Excluir"
-							class="button-pesquisa" process="@this"
+							class="btn btn-danger" process="@this"
 							disabled="#{reserva.statusReserva != 'CONCLUIDO'}"
 							update=":frm:usuarios-table :frm:msg"
 							action="#{listaEventosBean.excluir(reserva)}">
